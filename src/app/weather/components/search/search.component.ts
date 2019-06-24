@@ -3,7 +3,8 @@ import { WeatherService } from '../../weather.service'
 
 @Component({
   selector: 'app-search',
-  templateUrl: './search.component.html'
+  templateUrl: './search.component.html',
+  providers: [ WeatherService ]
 })
 
 export class SearchComponent {
@@ -11,11 +12,7 @@ export class SearchComponent {
 
   constructor(private weatherService: WeatherService) {}
 
-  passTerm(term) {
+  search(term) {
     this.weatherService.searchWeatherForCity(term.value)
-  }
-
-  search() {
-    // TO BE IMPLEMENTED
   }
 }

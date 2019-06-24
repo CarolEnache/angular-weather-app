@@ -24,9 +24,8 @@ export class WeatherService {
   searchWeatherForCity(city) {
     this
       .http
-      .get(`${ this.url }?q=${city}&appid=${this.params.APPID}&units=metric`)
+      .get(`${ this.url }?q=${city}&appid=${this.params.APPID}&units=${this.params.units}`)
       .subscribe(result => {
-        console.log('The weather result is: ', result)
         this.store.dispatch(
           addCityToTableAction(result)
         )
