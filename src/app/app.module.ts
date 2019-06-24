@@ -12,7 +12,7 @@ import { AppComponent } from './app.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    WeatherModule
+    WeatherModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

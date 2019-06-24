@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 
 import { Observable } from 'rxjs/Observable';
 import { catchError } from 'rxjs/operators';
+import { addCityToTableAction, CityList } from './store/actions/weather';
+import { Store } from '@ngrx/store';
 
 @Injectable()
 export class WeatherService {
@@ -14,10 +16,20 @@ export class WeatherService {
     APPID: '010721642521f31b0fbc8c3831d45951'
   };
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private store: Store<CityList>
+    ) { }
 
   searchWeatherForCity(city) {
-    // implement the service
+    this
+      .http
+      .get(`${ this.url }?q=${city}&appid=${this.params.APPID}&units=metric`)
+      .subscribe(result => {
+        console.log('The weather result is: ', result)
+        this.store.dispatch(
+          addCityToTableAction(result)
+        )
+      })
   }
-
 }

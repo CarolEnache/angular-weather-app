@@ -9,12 +9,12 @@
   </tr>
   </thead>
   <tbody>
-  <tr>
-    <td scope="row">London</td>
-    <td scope="row">3 &deg;</td>
-    <td scope="row">12.5 &deg;</td>
-    <td scope="row">9 &deg;</td>
-    <td scope="row">2 &deg;</td>
+  <tr *ngFor="let city of renderCityList$ | async">
+    <td scope="row">{{city.city.name}}</td>
+    <td scope="row">{{ getTemperatureAtHour('06', city.list) }} &deg;</td>
+    <td scope="row">{{ getTemperatureAtHour('12', city.list) }} &deg;</td>
+    <td scope="row">{{ getTemperatureAtHour('18', city.list) }} &deg;</td>
+    <td scope="row">{{ getTemperatureAtHour('00', city.list) }} &deg;</td>
   </tr>
   </tbody>
 </table>
